@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
   // let count = 0;
 
   import { ref } from "vue";
@@ -14,6 +14,24 @@
   const subtractFromCount = () => {
     console.log("from subtract from count: ", count);
     count.value = count.value - 1;
+  }
+</script> -->
+
+<script>
+  export default {
+    data() {
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      addToCount() {
+        this.count = this.count + 1
+      },
+      subtractFromCount() {
+        this.count = this.count - 1 
+      }
+    }
   }
 </script>
 
