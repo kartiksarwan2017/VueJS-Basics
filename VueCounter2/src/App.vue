@@ -1,4 +1,5 @@
-<!-- <script setup>
+<!-- Composition API -->
+<script setup>
   // let count = 0;
 
   import { ref } from "vue";
@@ -15,9 +16,10 @@
     console.log("from subtract from count: ", count);
     count.value = count.value - 1;
   }
-</script> -->
+</script>
 
-<script>
+<!-- Options API -->
+<!-- <script>
   export default {
     data() {
       return {
@@ -33,7 +35,7 @@
       }
     }
   }
-</script>
+</script> -->
 
 <template>
   <main>
