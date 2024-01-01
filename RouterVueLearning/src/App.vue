@@ -1,11 +1,17 @@
 <script setup>
-  import HomeView from "./views/HomeView.vue";
-  import AboutView from "./views/AboutView.vue";
+   import {ref} from "vue";
+   import { RouterView } from 'vue-router';
+   import Nav from "./components/Nav.vue";
+
+   const randomState = ref("");
 </script>
 
 <template>
   <div>
-    <HomeView />
+    {{ randomState }}
+    <button @click="randomState = 'Hello There!'">Click Me</button>
+    <Nav />
+    <RouterView />
   </div>
 </template>
 
