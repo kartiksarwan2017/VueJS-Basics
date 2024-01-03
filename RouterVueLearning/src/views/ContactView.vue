@@ -7,11 +7,14 @@
 </script>
 
 <template>
-    <div>
+    <div v-if="car">
         <h1>
             Contact Info
         </h1>
         <p>{{ car.contact.dealer }}</p>
         <p>{{ car.contact.number }}</p>
+    </div>
+    <div v-else>
+        <h1>Car Not Found</h1>
     </div>
 </template>
