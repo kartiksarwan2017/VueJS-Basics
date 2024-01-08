@@ -9,6 +9,7 @@
    const quizId = parseInt(route.params.id);
    const quiz = quizes.find(q => q.id === quizId);
    const currentQuestionIndex = ref(0);
+   const numberOfCorrectAnswers = ref(0);
 
 //    const questionStatus = ref(`${currentQuestionIndex.value}/${quiz.questions.length}`);
 
@@ -22,6 +23,13 @@
 
     const barPercentage = computed(() => `${currentQuestionIndex.value/quiz.questions.length * 100}%`);
 
+    const onOptionSelected = (isCorrect) => {
+        if(isCorrect){
+            numberOfCorrectAnswers.value++;
+        }
+        currentQuestionIndex.value++;
+    }
+
 </script>
 
 <template>
@@ -31,7 +39,10 @@
             :barPercentage="barPercentage"
         />
         <div>
-            <Question :question="quiz.questions[currentQuestionIndex]"/>
+            <Question :question="quiz.questions[currentQuestionIndex]"
+            @selectOption="onOptionSelected"
+            />
+            {{ numberOfCorrectAnswers }}
         </div>  
         <button @click="currentQuestionIndex++">Next Question</button>
     </div>

@@ -37,6 +37,6 @@ header h4 {
 .completion {
     height: 100%;
     width: 0%;
-    background-color: bisque;
+    background-color: greenyellow;
 }
 </style>
