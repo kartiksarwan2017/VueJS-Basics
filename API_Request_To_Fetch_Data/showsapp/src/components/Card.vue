@@ -1,22 +1,26 @@
 <script setup>
+import { defineProps } from 'vue';
+
+const {name, image, seriesItems} = defineProps(['name', 'image','seriesItems']);
 
 </script>
 
 <template>
-    <div></div>
-    <!-- <NCard title="Card with Cover">
+    <NCard>
         <template #cover>
-          <img src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg">
+          <img :src="image">
         </template>
-        Card Content
-    </NCard> -->
+        <h3>{{ name }}</h3>
+        <p v-for="(series, index) in seriesItems.slice(0, 3)" :key="index">
+            {{ series.name }}<span v-if="index < seriesItems.length - 1">,&nbsp;</span>
+        </p>
+    </NCard>
 </template>
 
 <style scoped>
 .n-card {
     width: 200px;
     margin:10px 20px;
-    height: 400px;
 
 }
 .n-card img {

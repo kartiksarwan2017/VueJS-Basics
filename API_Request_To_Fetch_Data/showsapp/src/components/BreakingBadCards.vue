@@ -1,64 +1,19 @@
-<!-- <script setup>
-import axios from "axios";
-// import { ref, onMounted  } from "vue";
-
-// export default {
-
-//     setup(){
-//         const movies = ref([]);
-
-//     const fetchMovies = async () => {
-
-//         const options = {
-//                 method: 'GET',
-//                 headers: {
-//                     accept: 'application/json',
-//                     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZjcwOGZkMDlhNGFkZGM3MTczZDA3YzQ2ZGYyMDVlNCIsInN1YiI6IjY0NTkwMDI1NmFhOGUwMDExY2ExNDAzNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.UXbpoC0_kBOKR8Npku7XpKdWH-ELp4k4qTWQUoyRVbk'
-//                 }
-//             };
-
-//         try {
-//             const { data: { results } } = await axios.get(`https://api.themoviedb.org/3/movie/popular`, options);
-//             movies.value = results;
-//             console.log(await axios.get(`https://api.themoviedb.org/3/movie/popular`, options));
-//         }catch(error) {
-//             console.log(error);
-//         }
-//     }
-
-//     onMounted(() => {
-//         fetchMovies();
-//     })
-
-//     return {
-//         movies,
-//     };
-// }}
-
-</script>
-
-<template>
-    <div>
-        <h1>Breaking Bad Cards</h1>
-        <div v-for="movie in movies" :key="movie.id">
-            <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" />
-        </div>
-    </div>
-</template> -->
-
 <script>
 import axios from "axios";
-import { ref, watch, onMounted } from "vue";
-import Card from "./Card.vue";
+import { ref, watch, onMounted, computed } from "vue";
 import md5 from 'md5';
+import Card from "./Card.vue";
 
-export default {
+export default {  
+    components: {
+        Card
+    },
     setup() {
     const characters = ref(null);
     const page = ref(0);
     const publicKey= ref("079e684d61a8f93d1cf7dcce70d45ef5");
     const  privateKey= ref("3290aa55419da747278751418487809eb0124144");
-    const  timestamp= Math.floor(Date.now() / 1000).toString();
+    const  timestamp = computed(() => {Math.floor(Date.now() / 1000).toString()});
     const hash= ref("");
     const apiUrl = ref("https://gateway.marvel.com/v1/public/characters");
 
@@ -72,6 +27,9 @@ export default {
 
         const response  = await axios.get(`${fullApiUrl}`);
         characters.value = response.data.data.results;
+
+        console.log(characters.value);
+
     }
 
     onMounted(() => {
@@ -87,23 +45,21 @@ export default {
 return {
     characters,
     page
-}
-}
-}
+}}}
 
 </script>
 
 <template>
-    <!-- <div class="container">
+    <div class="container">
         <div class="cards">
-            <Card />
+            <Card 
+              v-for="character in characters"
+              :key="character.id"
+              :name="character.name"
+              :image="`${character.thumbnail.path}.jpg`"
+              :seriesItems="character.series.items"
+            />
         </div>
-    </div> -->
-    <div>
-        {{ characters }}
-
-        <button @click="page = page + 1">next</button>
-        <button @click="page = page - 1">prev</button>
     </div>
 </template>
 
