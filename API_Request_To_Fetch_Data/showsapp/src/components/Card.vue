@@ -8,12 +8,14 @@ const {name, image, seriesItems} = defineProps(['name', 'image','seriesItems']);
 <template>
     <NCard>
         <template #cover>
-          <img :src="image">
+          <img :src="image" />
         </template>
         <h3>{{ name }}</h3>
-        <p v-for="(series, index) in seriesItems.slice(0, 3)" :key="index">
-            {{ series.name }}<span v-if="index < seriesItems.length - 1">,&nbsp;</span>
-        </p>
+        <div class="jobs">
+            <p v-for="(series, index) in seriesItems.slice(0, 3)" :key="index">
+                {{ series.name }}<span v-if="index < seriesItems.length - 1">,&nbsp;</span>
+            </p>
+        </div>
     </NCard>
 </template>
 
