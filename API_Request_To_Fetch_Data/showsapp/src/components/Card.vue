@@ -1,7 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
-
-const {name, image, seriesItems} = defineProps(['name', 'image','seriesItems']);
+const {name, image} = defineProps(['name', 'image']);
 
 </script>
 
@@ -11,11 +10,7 @@ const {name, image, seriesItems} = defineProps(['name', 'image','seriesItems']);
           <img :src="image" />
         </template>
         <h3>{{ name }}</h3>
-        <div class="jobs">
-            <p v-for="(series, index) in seriesItems.slice(0, 3)" :key="index">
-                {{ series.name }}<span v-if="index < seriesItems.length - 1">,&nbsp;</span>
-            </p>
-        </div>
+        <slot></slot>
     </NCard>
 </template>
 
@@ -29,12 +24,5 @@ const {name, image, seriesItems} = defineProps(['name', 'image','seriesItems']);
     height: 250px;
 }
 
-p {
-    font-size: 10px;
-}
 
-.jobs {
-    display: flex;
-    flex-wrap: wrap;
-}
 </style>

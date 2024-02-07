@@ -8,6 +8,7 @@ const page = ref(1);
 
 onMounted(async () => {
     const response = await axios.get("https://rickandmortyapi.com/api/character");
+    console.log(response);
     characters.value = response.data.results;
 });
 
@@ -21,14 +22,14 @@ watch(page, async () => {
 <template>
     <div class="container">
         <div class="cards">
-            {{ characters }}
-            <!-- <Card 
+            <Card 
                 v-for="character in characters" 
                 :key="character.id" 
                 :name="character.name"
-                :image="`${character.thumbnail.path}.jpg`" 
-                :seriesItems="character.series.items" 
-            /> -->
+                :image="character.image" 
+            >
+            <p>{{ character.location.name }}</p>
+            </Card>
         </div>
         <div class="button-container">
             <button @click="page--">&lt;</button>

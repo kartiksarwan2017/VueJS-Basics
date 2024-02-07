@@ -55,9 +55,14 @@ export default {
                 v-for="character in characters" 
                 :key="character.id" 
                 :name="character.name"
-                :image="`${character.thumbnail.path}.jpg`" 
-                :seriesItems="character.series.items" 
-            />
+                :image="`${character.thumbnail.path}.jpg`"  
+            >
+            <div class="jobs">
+                <p v-for="(series, index) in character.series.items.slice(0, 3)" :key="index">
+                    {{ series.name }}<span v-if="index < character.series.items.length - 1">,&nbsp;</span>
+                </p>
+            </div>
+            </Card>
         </div>
         <div class="button-container">
             <button @click="page--">&lt;</button>
@@ -88,10 +93,6 @@ export default {
     font-size: 10px;
 }
 
-.jobs {
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .button-container {
     display: flex;
@@ -112,4 +113,14 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-}</style>
+}
+
+p {
+    font-size: 10px;
+}
+
+.jobs {
+    display: flex;
+    flex-wrap: wrap;
+}
+</style>
