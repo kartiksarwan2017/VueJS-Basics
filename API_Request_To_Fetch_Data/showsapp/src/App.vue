@@ -1,9 +1,6 @@
 <script setup>
-import { ref } from 'vue';
 import BreakingBadCards from './components/BreakingBadCards.vue';
 import RickMortyCards from "./components/RickMortyCards.vue";
-
-const showRickMortyCards = ref(true);
 
 </script>
 
@@ -20,8 +17,7 @@ const showRickMortyCards = ref(true);
         </div>
     </template>
   </Suspense>
-  <RickMortyCards v-if="showRickMortyCards"/>
-  <button @click="showRickMortyCards = !showRickMortyCards">Toggle</button>
+  <RickMortyCards />
  </main>
 </template>
 

@@ -1,24 +1,19 @@
 <script setup>
 import axios from "axios";
-import { ref, watch, onMounted, onUpdated, onUnmounted, onBeforeMount } from "vue";
+import { ref, watch, onMounted } from "vue";
 import Card from "./Card.vue";
 
-const page = ref(0);
+const characters = ref(null);
+const page = ref(1);
 
-onBeforeMount(() => {
-    console.log("COMPONENT IS ABOUT TO MOUNT!");
+onMounted(async () => {
+    const response = await axios.get("https://rickandmortyapi.com/api/character");
+    characters.value = response.data.results;
 });
 
-onMounted(() => {
-    console.log("COMPONENT IS MOUNTED!");
-});
-
-onUpdated(() => {
-    console.log("COMPONENT WAS UPDATED");
-});
-
-onUnmounted(() => {
-    console.log("COMPONENT UNMOUNTED");
+watch(page, async () => {
+    const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`);
+    characters.value = res.data.results;
 });
 
 </script>
@@ -26,7 +21,7 @@ onUnmounted(() => {
 <template>
     <div class="container">
         <div class="cards">
-            <p style="color: white;">{{ page }}</p>
+            {{ characters }}
             <!-- <Card 
                 v-for="character in characters" 
                 :key="character.id" 
