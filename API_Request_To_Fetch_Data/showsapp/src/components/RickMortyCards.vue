@@ -50,7 +50,6 @@ watch(page, async () => {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    height: 700px
 }
 
 .cards h3 {
