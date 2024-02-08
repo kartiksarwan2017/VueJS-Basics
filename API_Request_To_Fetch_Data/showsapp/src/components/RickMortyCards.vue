@@ -8,7 +8,6 @@ const page = ref(1);
 
 onMounted(async () => {
     const response = await axios.get("https://rickandmortyapi.com/api/character");
-    console.log(response);
     characters.value = response.data.results;
 });
 
