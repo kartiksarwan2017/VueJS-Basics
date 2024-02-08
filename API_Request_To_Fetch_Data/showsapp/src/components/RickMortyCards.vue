@@ -21,7 +21,7 @@ watch(page, async () => {
 
 <template>
     <div class="container">
-        <div class="cards">
+        <div v-if="characters" class="cards">
             <Card 
                 v-for="character in characters" 
                 :key="character.id" 
@@ -30,6 +30,9 @@ watch(page, async () => {
             >
             <p>{{ character.location.name }}</p>
             </Card>
+        </div>
+        <div v-else class="cards spinner">
+            <NSpin size="large"></NSpin>
         </div>
         <div class="button-container">
             <button @click="page--">&lt;</button>
@@ -79,9 +82,9 @@ watch(page, async () => {
     margin: 0 5px;
     cursor: pointer;
 }
-
 .spinner {
     display: flex;
     align-items: center;
     justify-content: center;
-}</style>
+  }
+</style>
