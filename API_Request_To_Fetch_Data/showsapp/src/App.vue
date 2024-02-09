@@ -1,23 +1,21 @@
 <script setup>
-import BreakingBadCards from './components/BreakingBadCards.vue';
+import BreakingBadCards from './components/BreakingBadCardSuspense.vue';
 import RickMortyCards from "./components/RickMortyCards.vue";
+import Hero from "./components/Hero.vue";
+import {ref} from "vue";
+
+const isBreakingBad = ref(true);
 
 </script>
 
 <template>
  <main>
-  <h1>HERO</h1> 
-  <Suspense>
-    <template #default>
-        <BreakingBadCards />
-    </template>
-    <template #fallback>
-       <div class="cards spinner">
-           <NSpin size="large" />
-       </div>
-    </template>
-  </Suspense>
-  <RickMortyCards />
+  <Hero 
+    :isBreakingBad="isBreakingBad" 
+    @selectShow="isBreakingBad = !isBreakingBad"
+  />
+  <BreakingBadCards v-if="isBreakingBad" />
+  <RickMortyCards v-else />
  </main>
 </template>
 
@@ -28,11 +26,6 @@ import RickMortyCards from "./components/RickMortyCards.vue";
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .spinner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 </style>
 
