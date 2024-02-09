@@ -2,7 +2,7 @@
 import BreakingBadCards from './components/BreakingBadCardSuspense.vue';
 import RickMortyCards from "./components/RickMortyCards.vue";
 import Hero from "./components/Hero.vue";
-import {ref} from "vue";
+import { ref } from "vue";
 
 const isBreakingBad = ref(true);
 
@@ -14,8 +14,9 @@ const isBreakingBad = ref(true);
     :isBreakingBad="isBreakingBad" 
     @selectShow="isBreakingBad = !isBreakingBad"
   />
-  <BreakingBadCards v-if="isBreakingBad" />
-  <RickMortyCards v-else />
+  <KeepAlive>
+    <Component :is="isBreakingBad ? BreakingBadCards : RickMortyCards" />
+  </KeepAlive>
  </main>
 </template>
 
