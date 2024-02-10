@@ -12,9 +12,11 @@
   // });
  
   // const selecRandomColor = () => {
-  //   color.value.red = Math.floor(Math.random()*255),
-  //   color.value.blue = Math.floor(Math.random()*255),
-  //   color.value.green = Math.floor(Math.random()*255)
+  //   // color.value.red = Math.floor(Math.random()*255),
+  //   // color.value.blue = Math.floor(Math.random()*255),
+  //   // color.value.green = Math.floor(Math.random()*255)
+
+  //   color.value = true
   // }
 
   /* Defining State using reactive */
@@ -28,6 +30,8 @@
     color.red = Math.floor(Math.random()*255),
     color.blue = Math.floor(Math.random()*255),
     color.green = Math.floor(Math.random()*255)
+
+    // color = {yellow: 4}
   }
 </script>
 
