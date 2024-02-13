@@ -1,11 +1,8 @@
 <script setup>
  import GrandChild from "./GrandChild.vue";
- import {inject} from "vue";
+ import useNumbers from "../composables/useNumbers";
 
- const numbers = inject("numbers");
- const addNumber = (num) => {
-  numbers.value.push(num);
-}
+ const {numbers, addNumber} = useNumbers();
 </script>
 
 <template>
