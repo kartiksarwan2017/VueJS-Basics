@@ -1,8 +1,10 @@
 <script setup>
-   import { defineProps } from 'vue';
+  import {inject} from "vue";
 
-   const { numbers } = defineProps(['numbers']);
-
+  const numbers = inject("numbers");
+  const addNumber = (num) => {
+  numbers.value.push(num);
+}
 </script>
 
 <template>
