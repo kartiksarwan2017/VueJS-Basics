@@ -1,11 +1,11 @@
 <script setup>
-  import useNumbers from '../composables/useNumbers';
+  import { useNumbersStore } from '../stores/numbers';
 
-  const {numbers, filterNum} = useNumbers();
+  const { numbers, filterNum } = useNumbersStore();
 </script>
 
 <template>
     <div>
-        <h1>GreatGrandChild Component {{filterNum(5)}}</h1>
+        <h1>GreatGrandChild Component {{filterNum(16)}}</h1>
     </div>
 </template>

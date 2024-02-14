@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-export default function() {
+const useAges = () => {
     const numbers = ref([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     const addNumber = (num) => {
@@ -17,3 +17,5 @@ export default function() {
         filterNum
     }
 }
+
+export default useAges;
